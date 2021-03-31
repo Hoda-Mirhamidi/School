@@ -49,6 +49,13 @@ public class TeacherRepository {
                 .filter(teacher -> teacher.getCourse().size() > 2).collect(Collectors.toList());
     }
 
+    public Set<School> schoolsFoundByTeachers(){
+        Set<School> schoolSet = teachers.stream()
+                .map(Teacher::getSchool)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+        return schoolSet;
+    }
 
 
 
