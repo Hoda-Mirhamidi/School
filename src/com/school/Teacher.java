@@ -12,7 +12,7 @@ public abstract class Teacher {
     private String lastName;
     private String personalNumber;
     private Degree degree; //مدرک معلم
-    private Set<School> school;
+    private Set<School> school = new HashSet<>();
     private Integer experienceYear;
     private Set<Course> course = new HashSet<>();
     private int age;
