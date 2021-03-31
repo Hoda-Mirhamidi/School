@@ -1,5 +1,6 @@
 package com.school;
 
+import com.school.enums.Degree;
 import com.school.enums.TeacherType;
 
 import java.util.*;
@@ -37,6 +38,15 @@ public class TeacherRepository {
         teacherTypeListMap.put(TeacherType.FULL_TIME,fullTimeList);
         teacherTypeListMap.put(TeacherType.PART_TIME,partTimeList);
         return teacherTypeListMap ;
+    }
+
+    public List<Teacher> partTimeTeachersFilteredList(){
+
+        return teachers.stream().filter(teacher -> teacher.getType()==TeacherType.PART_TIME)
+                .filter(teacher -> teacher.getDegree()== Degree.BS)
+                .filter(teacher -> teacher.getSchool().stream().anyMatch(school -> school.getDegree()==2))
+                .filter(teacher -> teacher.getSchool().size()==1)
+                .filter(teacher -> teacher.getCourse().size() > 2).collect(Collectors.toList());
     }
 
 
