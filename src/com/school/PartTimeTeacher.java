@@ -1,6 +1,8 @@
 package com.school;
 
 
+import com.school.enums.TeacherType;
+
 public class PartTimeTeacher extends Teacher {
     private int hourlySalary;
     private int hourPerMonth;
@@ -9,6 +11,7 @@ public class PartTimeTeacher extends Teacher {
         super(name, lastName, personalCode);
         this.hourlySalary = hourlySalary;
         this.hourPerMonth = hourPerMonth;
+        this.setType(TeacherType.PART_TIME);
     }
 
     public int getHourlySalary() {
@@ -31,5 +34,13 @@ public class PartTimeTeacher extends Teacher {
     public Double calculateSalary() {
         double baseSalary = hourlySalary * hourPerMonth;
         return baseSalary - super.calculateInsurance(baseSalary) - super.calculateTax(baseSalary);
+    }
+
+    @Override
+    public String toString() {
+        return "PartTimeTeacher{" +
+                "hourlySalary=" + hourlySalary +
+                ", hourPerMonth=" + hourPerMonth +
+                '}';
     }
 }
