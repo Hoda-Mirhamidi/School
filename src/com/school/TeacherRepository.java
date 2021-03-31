@@ -2,16 +2,13 @@ package com.school;
 
 import com.school.enums.TeacherType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class TeacherRepository {
 
-    List<Teacher> teachers = new ArrayList<>();
+    public List<Teacher> teachers = new ArrayList<>();
 
     public Teacher addSchoolToTeacher (Teacher teacher, School school){
         teacher.getSchool().add(school);
@@ -33,7 +30,13 @@ public class TeacherRepository {
     }
 
     public Map<TeacherType,List<Teacher>> moreThanTenYearsExperienceTeachers (){
-        return teachers.stream().collect(Collectors.toMap(Teacher::getType, teacher -> teachers.stream().filter(teacher1 -> teacher1.getExperienceYear()==10).collect(Collectors.toList())));
+
+        List<Teacher> fullTimeList = teachers.stream().filter(teacher -> teacher.getType()==TeacherType.FULL_TIME).filter(teacher -> teacher.getExperienceYear()==10).collect(Collectors.toList());
+        List<Teacher> partTimeList = teachers.stream().filter(teacher -> teacher.getType()==TeacherType.PART_TIME).filter(teacher -> teacher.getExperienceYear()==10).collect(Collectors.toList());
+        Map<TeacherType,List<Teacher>> teacherTypeListMap = new HashMap<>();
+        teacherTypeListMap.put(TeacherType.FULL_TIME,fullTimeList);
+        teacherTypeListMap.put(TeacherType.PART_TIME,partTimeList);
+        return teacherTypeListMap ;
     }
 
 
