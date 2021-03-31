@@ -134,4 +134,12 @@ public abstract class Teacher {
         return Objects.hash(name, lastName, personalNumber);
     }
 
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", personalNumber='" + personalNumber + '\'' +
+                '}';
+    }
 }
