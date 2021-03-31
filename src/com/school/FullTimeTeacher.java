@@ -24,11 +24,4 @@ public class FullTimeTeacher extends Teacher {
     public Double calculateSalary() {
         return baseSalary - super.calculateInsurance(baseSalary) - super.calculateTax(baseSalary);
     }
-
-    @Override
-    public String toString() {
-        return "FullTimeTeacher{" +
-                "baseSalary=" + baseSalary +
-                '}';
-    }
 }
