@@ -57,6 +57,10 @@ public class TeacherRepository {
         return schoolSet;
     }
 
+    public Map<String,List<Teacher>> schoolTeachersMap(){
+        return schoolsFoundByTeachers().stream().collect(Collectors.toMap(School::getName, school -> teachers.stream().filter(teacher -> teacher.getSchool().contains(school)).collect(Collectors.toList())));
+    }
+
 
 
 
